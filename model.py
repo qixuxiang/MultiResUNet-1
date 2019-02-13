@@ -66,13 +66,13 @@ def multi_res_u_net(pretrained_weights = None,input_size = (256,256,1)):
     res_path2 = res_path(res_block2,64,2)
     concat = layers.Concatenate()([upsample,res_path2])
 
-    res_block8 = multi_res_u_net(concat,17,35,53,105)
+    res_block8 = mlti_res_block(concat,17,35,53,105)
     upsample = layers.Upsampling2D()(res_block8)
 
     res_path1 = res_path(res_block1,32,1)
     concat = layers.Concatenate()([upsample,res_path1])
     
-    res_block9 = multi_res_u_net(concat,8,17,26,51)
+    res_block9 = mlti_res_block(concat,8,17,26,51)
     sigmoid = Conv2D(1,(1,1),padding = 'same',activation="sigmoid")(res_block9)
 
     model = tf.keras.Modedl(inputs,sigmoid)
