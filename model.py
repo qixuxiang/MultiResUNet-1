@@ -23,7 +23,7 @@ def res_path(inputs,filter_size,path_number):
 
         return add
     
-    cnn = block(inputs,flter_size)
+    cnn = block(inputs, filter_size)
     if path_number <= 3:
         cnn = block(cnn,filter_size)
         if path_number <= 2:
