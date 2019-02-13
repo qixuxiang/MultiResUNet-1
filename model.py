@@ -15,7 +15,7 @@ def mlti_res_block(inputs,filter_size1,filter_size2,filter_size3,filter_size4):
     return add
 
 def res_path(inputs,filter_size,path_number):
-    def block(inputs,filter_size):
+    def block(x,fl):
         cnn1 = Conv2D(filter_size,(3,3),padding = 'same',activation="relu")(inputs)
         cnn2 = Conv2D(filter_size,(1,1),padding = 'same',activation="relu")(inputs)
 
@@ -34,7 +34,7 @@ def res_path(inputs,filter_size,path_number):
     return cnn
 
 def multi_res_u_net(pretrained_weights = None,input_size = (256,256,1)):
-    inputs = layers.Input((train_data.shape[1],train_data[2],train_data[3]))
+    inputs = layers.Input(input_size)
 
     res_block1 = mlti_res_block(inputs,8,17,26,51)
     pool1 = layers.MaxPool2D()(res_block1)
