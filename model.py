@@ -33,7 +33,7 @@ def res_path(inputs,filter_size,path_number):
 
     return cnn
 
-def multi_res_u_net(pretrained_weights = None,input_size = (256,256,1)):
+def multi_res_u_net(pretrained_weights = None,input_size = (256,256,1),lr=0.001):
     inputs = layers.Input(input_size)
 
     res_block1 = mlti_res_block(inputs,8,17,26,51)
@@ -76,7 +76,7 @@ def multi_res_u_net(pretrained_weights = None,input_size = (256,256,1)):
     sigmoid = Conv2D(1,(1,1),padding = 'same',activation="sigmoid")(res_block9)
 
     model = tf.keras.Modedl(inputs,sigmoid)
-    modle.compile(tf.keras.optimizer.Adam(0.0001),loss = 'binary_crossentropy', metrics = ['accuracy'])
+    modle.compile(tf.keras.optimizer.Adam(lr),loss = 'binary_crossentropy', metrics = ['accuracy'])
 
     if(pretrained_weights):
         	model.load_weights(pretrained_weights)
