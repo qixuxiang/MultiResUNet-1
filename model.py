@@ -42,7 +42,7 @@ def multi_res_u_net(pretrained_weights = None,input_size = (256,256,1),lr=0.001)
     res_block2 = mlti_res_block(pool1,17,35,53,105)
     pool2 = layers.MaxPool2D()(res_block2)
 
-    res_block3 = mlti_res_block(pool2,31,72,106,212)
+    res_block3 = mlti_res_block(pool2,31,72,106,209)
     pool3 = layers.MaxPool2D()(res_block3)
 
     res_block4 = mlti_res_block(pool3,71,142,213,426)
